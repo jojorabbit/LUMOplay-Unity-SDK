@@ -3,11 +3,18 @@
   "version": "1.0.1",
   "displayName": "LUMOPlay SDK",
   "description": "LUMOPlay SDK package",
-  "unity": "2020.3", 
+  "unity": "2020.3",
   "documentationUrl": "https://help.lumoplay.com/hc/en-us",
   "keywords": [
     "Lumo",
     "LumoPlay"
+  ],
+  "samples": [
+    {
+      "displayName": "LUMOPlay SDK Samples",
+      "description": "Contains samples for the LUMOPlay SDK",
+      "path": "Samples~/LUMOplay SDK Examples"
+    }
   ],
   "author": {
     "name": "LumoPlay",
