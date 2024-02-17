@@ -1,0 +1,17 @@
+{
+  "name": "com.lumoplay.sdk",
+  "version": "1.0.1",
+  "displayName": "LUMOPlay SDK",
+  "description": "LUMOPlay SDK package",
+  "unity": "2020.3", 
+  "documentationUrl": "https://help.lumoplay.com/hc/en-us",
+  "keywords": [
+    "Lumo",
+    "LumoPlay",   
+  ],
+  "author": {
+    "name": "LumoPlay",
+    "email": "support@lumoplay.zendesk.com",
+    "url": "https://www.lumoplay.com/"
+  }
+}
