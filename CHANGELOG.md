@@ -1,5 +1,8 @@
 LUMOplay Unity SDK
-
+Version 1.0.2 -
+	- fixed double event system on Ball Game
+	- using white material for balls so it is easier to switch to URP
+	- Created a package to be able to import via GIT url
 Version 1.0.1 - Release
 	- Fixed bug in communication with the LUMOplay software that would sometimes send the ready signal too early causing the game-switch overlay to be removed too soon
 
