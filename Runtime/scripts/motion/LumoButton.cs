@@ -13,6 +13,7 @@ namespace Common.Lumo {
     /// Note: instead of using <see cref="OnMotionUI.onMotionEventCallbacks"/> use
     /// <see cref="onClick"/>
     /// </summary>
+    [AddComponentMenu("LUMOplay/LumoButton")]
     [RequireComponent(typeof(OnMotionUI))]
     public class LumoButton : Selectable, IPointerClickHandler, ISubmitHandler {
 
