@@ -1,0 +1,9 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/lumo-play-sdk/Samples/LUMOplay%20SDK%20Examples/UI%20Toolkit/SimpleUI%20Interaction%20Style.uss?fileID=7433441132597879392&amp;guid=f107641308cce994ba0aac7007b610cb&amp;type=3#SimpleUI Interaction Style" />
+    <ui:Image name="first-image" class="demo-image" />
+    <ui:Image name="second-image" class="demo-image" />
+    <ui:Image name="third-image" class="demo-image" />
+    <ui:Image name="fourth-image" class="demo-image" />
+    <ui:Button text="First" parse-escape-sequences="true" display-tooltip-when-elided="true" name="first-button" />
+    <ui:Button text="Second" parse-escape-sequences="true" display-tooltip-when-elided="true" name="second-button" />
+</ui:UXML>

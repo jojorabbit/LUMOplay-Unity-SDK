@@ -1,0 +1,11 @@
+.demo-image {
+    flex-shrink: 0;
+    flex-grow: 1;
+    background-color: white;
+    border-width: 2px;
+    border-color: black;
+}
+
+.unity-button {
+    flex-grow: 1;
+}
