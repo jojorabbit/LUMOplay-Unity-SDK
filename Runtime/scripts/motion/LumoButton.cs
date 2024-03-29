@@ -1,4 +1,8 @@
-﻿using System;
+﻿#if UNITY_EDITOR
+#define LOGS_ENABLED
+#endif
+
+using System;
 using System.Collections;
 using LUMOplay;
 using UnityEngine;
@@ -8,7 +12,7 @@ using UnityEngine.UI;
 
 // ReSharper disable UnusedMember.Global
 
-namespace Common.Lumo {
+namespace LUMOPlay {
     /// <summary>
     /// Note: instead of using <see cref="OnMotionUI.onMotionEventCallbacks"/> use
     /// <see cref="onClick"/>
@@ -30,6 +34,8 @@ namespace Common.Lumo {
         private bool blockMotion;
 
         [SerializeField] private LumoButtonClickedEvent onClick = new();
+
+        private SelectionState previousState;
 
         protected LumoButton() { }
 
@@ -78,24 +84,31 @@ namespace Common.Lumo {
                 return;
             }
 
+            Debug.Log($"{nameof(LumoButton)}::{nameof(OnPointerClick)}");
             Press();
         }
 
         // required for mouse and touch
         public virtual void OnSubmit(BaseEventData eventData) {
-            Press();
-
             // if we get set disabled during the press
             // don't run the coroutine.
             if (!IsActive() || !IsInteractable()) {
                 return;
             }
 
+            if (blockMotion) {
+                return;
+            }
+
+            Debug.Log($"{nameof(LumoButton)}::{nameof(OnSubmit)}");
+
+            blockMotion = true;
+
             DoStateTransition(SelectionState.Pressed, false);
-            StartCoroutine(OnFinishSubmit());
+            StartCoroutine(OnFinishSubmitRoutine());
         }
 
-        private IEnumerator OnFinishSubmit() {
+        private IEnumerator OnFinishSubmitRoutine() {
             var fadeTime = colors.fadeDuration;
             var elapsedTime = 0f;
 
@@ -105,12 +118,20 @@ namespace Common.Lumo {
                 yield return null;
             }
 
+            yield return StartCoroutine(OnPostFinishSubmitRoutine());
+
             DoStateTransition(currentSelectionState, false);
+
+            blockMotion = false;
         }
 
         #region == LUMO related motion events ==
 
         private void OnLumoMotionEvent(LumoMotionEvent lumoMotionEvent) {
+            if (!IsActive() || !IsInteractable()) {
+                return;
+            }
+
             if (blockMotion) {
                 return;
             }
@@ -118,11 +139,19 @@ namespace Common.Lumo {
             blockMotion = true;
 
             DoStateTransition(SelectionState.Pressed, false);
-            StartCoroutine(OnLumoFinishSubmit());
+            StartCoroutine(OnLumoFinishSubmitRoutine());
         }
 
+        protected override void DoStateTransition(SelectionState state, bool instant) {
+            if (previousState == state) {
+                return;
+            }
 
-        private IEnumerator OnLumoFinishSubmit() {
+            base.DoStateTransition(state, instant);
+            previousState = state;
+        }
+
+        private IEnumerator OnLumoFinishSubmitRoutine() {
             var fadeTime = colors.fadeDuration;
             var elapsedTime = 0f;
 
@@ -132,9 +161,9 @@ namespace Common.Lumo {
                 yield return null;
             }
 
-            DoStateTransition(currentSelectionState, false);
-
             yield return StartCoroutine(OnPostFinishSubmitRoutine());
+
+            DoStateTransition(currentSelectionState, false);
 
             blockMotion = false;
         }
