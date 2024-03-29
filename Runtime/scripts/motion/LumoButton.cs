@@ -182,6 +182,7 @@ namespace LUMOPlay {
 
         #endregion
 
+        #if UNITY_EDITOR
         protected override void OnValidate() {
             base.OnValidate();
 
@@ -189,6 +190,7 @@ namespace LUMOPlay {
                 onMotionUI = GetComponent<OnMotionUI>();
             }
         }
+        #endif
 
     }
 }
